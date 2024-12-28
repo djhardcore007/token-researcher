@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dexscreener:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: python src/dexscreener.py
+
+  test:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    # command: pytest tests/
