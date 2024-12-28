@@ -1,5 +1,6 @@
 import pytest
 from src.coingecko import CoinGecko
+from src.schema import CoinGeckoSocial, CoinGeckoResponse
 
 @pytest.mark.integration
 def test_coingecko_wbtc():
@@ -9,21 +10,22 @@ def test_coingecko_wbtc():
     # WBTC token address
     wbtc_address = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
 
-    # Get token ID
-    token_id = coingecko.get_token_id(wbtc_address)
-    assert token_id == "wrapped-bitcoin"
+    # Get complete info
+    response = coingecko.get_coin_info(wbtc_address, "ethereum")
 
-    # Get social info
-    social_info = coingecko.get_social_info(token_id)
-
-    assert social_info['twitter_handle'] is not None
-    assert social_info['website'] is not None
+    assert isinstance(response, CoinGeckoResponse)
+    assert response.token_id == "wrapped-bitcoin"
+    assert isinstance(response.social_info, CoinGeckoSocial)
+    assert response.social_info.twitter_handle is not None
+    assert response.social_info.website is not None
 
 @pytest.mark.integration
 def test_coingecko_invalid_token():
     """Test CoinGecko API with invalid token."""
     coingecko = CoinGecko()
 
-    # Test invalid address
-    token_id = coingecko.get_token_id("0xinvalid")
-    assert token_id is None
+    response = coingecko.get_coin_info("0xinvalid", "ethereum")
+    assert isinstance(response, CoinGeckoResponse)
+    assert response.token_id is None
+    assert isinstance(response.social_info, CoinGeckoSocial)
+    assert response.social_info.twitter_handle is None

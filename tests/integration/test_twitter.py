@@ -3,15 +3,15 @@ from src.twitter import TwitterResearcher
 from src.schema import TwitterResponse
 
 @pytest.mark.integration
-def test_twitter_vitalik():
+def test_twitter():
     """Test Twitter API with Vitalik's account."""
     twitter = TwitterResearcher()
 
-    response = twitter.get_twitter_info("VitalikButerin")
-    assert isinstance(response, TwitterResponse)
+    response = twitter.get_twitter_info("djhardcore007")
 
+    assert isinstance(response, TwitterResponse)
     # Check user info
-    assert response.user.twitter_handle == "VitalikButerin"
+    assert response.user.twitter_handle == "djhardcore007"
     assert response.user.twitter_followers > 0
     assert response.user.twitter_description
 

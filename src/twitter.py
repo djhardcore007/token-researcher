@@ -1,6 +1,7 @@
 import logging
 import tweepy
 from typing import Optional, List
+from datetime import datetime
 from src.config import Config
 from src.schema import TwitterUser, Tweet, TwitterResponse
 
@@ -17,15 +18,17 @@ class TwitterResearcher:
     def get_user_info(self, twitter_handle: str) -> Optional[TwitterUser]:
         """Get basic Twitter user information."""
         if not twitter_handle:
+            self.logger.error("Twitter handle is required")
             return None
 
         try:
             user = self.client.get_user(
                 username=twitter_handle,
-                user_fields=['public_metrics', 'description', 'created_at']
+                user_fields=['id', 'public_metrics', 'description', 'created_at']
             )
 
-            if not user.data:
+            if not user or not user.data:
+                self.logger.error(f"No user data found for {twitter_handle}")
                 return None
 
             return TwitterUser.from_api_response(twitter_handle, user.data)

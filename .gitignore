@@ -47,3 +47,6 @@ ENV/
 # Telegram session files
 *.session
 *.session-journal
+
+# Output
+output/
