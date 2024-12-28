@@ -1,3 +1,8 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
 # Python
 __pycache__/
 *.py[cod]
@@ -38,3 +43,7 @@ ENV/
 
 # Docker
 .docker/
+
+# Telegram session files
+*.session
+*.session-journal

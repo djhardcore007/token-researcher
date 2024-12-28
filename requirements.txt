@@ -14,7 +14,19 @@ black>=23.7.0  # code formatting
 flake8>=6.1.0  # code linting
 
 # Docker support
-python-dotenv>=1.0.0  # for environment variables
+python-dotenv==1.0.0  # for environment variables
 
 # Click for CLI
 click>=8.1.7
+
+# Twitter API
+tweepy==4.14.0
+
+# Pydantic
+pydantic>=2.0.0
+
+# Add Telegram support
+telethon>=1.32.0  # Telegram client library
+
+# For async tests
+pytest-asyncio>=0.23.0
