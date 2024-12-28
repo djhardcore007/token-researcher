@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import List, Optional, Dict
+from typing import Optional, Dict, List
+
 
 # Twitter models
 class TwitterUser(BaseModel):
@@ -11,7 +12,7 @@ class TwitterUser(BaseModel):
     twitter_created_at: datetime
 
     @classmethod
-    def from_api_response(cls, handle: str, data: dict) -> 'TwitterUser':
+    def from_api_response(cls, handle: str, data: Dict) -> 'TwitterUser':
         """Create TwitterUser from API response."""
         # Handle both string and datetime objects for created_at
         created_at = data.get('created_at')
@@ -33,9 +34,16 @@ class Tweet(BaseModel):
     tweet_likes: int
     tweet_created_at: datetime
 
+class RecentTwitterMetrics(BaseModel):
+    num_recent_posts: int = 0
+    avg_engagement: float = 0.0
+    avg_impressions: float = 0.0
+    engagement_rate: float = 0.0
+
 class TwitterResponse(BaseModel):
     user: TwitterUser
-    popular_tweets: List[Tweet] = []
+    recent_tweets: List[Tweet] = []
+    metrics: RecentTwitterMetrics = RecentTwitterMetrics()
 
 # Telegram models
 class TelegramChannel(BaseModel):

@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from src.coingecko import CoinGecko
 from src.schema import CoinGeckoSocial
