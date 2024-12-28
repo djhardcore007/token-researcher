@@ -7,7 +7,7 @@ load_dotenv()
 class Config:
     # Twitter settings
     TWITTER_BEARER_TOKEN = os.getenv('TWITTER_BEARER_TOKEN')
-    TWITTER_MAX_RESULTS = int(os.getenv('TWITTER_MAX_RESULTS', 100))
+    TWITTER_MAX_RESULTS = int(os.getenv('TWITTER_MAX_RESULTS', 5))
     TWITTER_LOG_LEVEL = os.getenv('TWITTER_LOG_LEVEL', 'INFO')
 
     # Telegram settings
