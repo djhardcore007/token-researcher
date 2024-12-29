@@ -3,10 +3,10 @@ import logging
 from click.testing import CliRunner
 
 
-TEST_TOKEN_ADDRESS = "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82"
-TEST_CHAIN = "bsc"
-TEST_TOKEN_SYMBOL = "Cake"
-TEST_TOKEN_COINGECKO_ID = "pancakeswap-token"
+TEST_TOKEN_ADDRESS = "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump"
+TEST_CHAIN = "solana"
+TEST_TOKEN_SYMBOL = "JAIL"
+TEST_TOKEN_COINGECKO_ID = "jailbreakme"
 
 
 @pytest.fixture(autouse=True)

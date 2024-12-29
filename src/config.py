@@ -15,6 +15,11 @@ class Config:
     TELEGRAM_API_HASH = os.getenv('TELEGRAM_API_HASH')
     TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
+    # Blockchain Explorer API Keys
+    ETHERSCAN_API_KEY = os.getenv('ETHERSCAN_API_KEY')
+    BASESCAN_API_KEY = os.getenv('BASESCAN_API_KEY')
+    SOLSCAN_API_KEY = os.getenv('SOLSCAN_API_KEY')
+
     @classmethod
     def validate(cls):
         """Validate required environment variables."""
