@@ -1,8 +1,15 @@
 import csv
+import logging
 from pathlib import Path
 from typing import List, Union, Dict, Any
 from src.schema import Report
 from datetime import datetime
+
+
+def save_report(report: Report, output_path: str) -> None:
+    """Save a report to a JSON file"""
+    with open(output_path, 'w') as f:
+        f.write(report.model_dump_json(indent=2))
 
 
 def load_single_report(json_path: Union[str, Path]) -> Report:
@@ -10,12 +17,11 @@ def load_single_report(json_path: Union[str, Path]) -> Report:
     return Report.from_json(json_path)
 
 
-def load_multiple_reports(directory: Union[str, Path]) -> List[Report]:
+def load_multiple_reports(json_paths: List[str]) -> List[Report]:
     """Load all report JSON files from a directory into Report objects"""
-    directory = Path(directory)
     reports = []
 
-    for json_file in directory.glob('report_*.json'):
+    for json_file in json_paths:
         try:
             report = Report.from_json(json_file)
             reports.append(report)
@@ -43,7 +49,7 @@ def flatten_dict(d: Dict[str, Any], parent_key: str = '', sep: str = '_') -> Dic
     return dict(items)
 
 
-def reports_to_csv(reports: List[Report], output_path: Union[str, Path]) -> None:
+def reports_to_csv(reports: List[Report], output_path: str) -> None:
     """Convert a list of reports to a CSV file using Pydantic model_dump"""
     if not reports:
         raise ValueError("No reports provided")

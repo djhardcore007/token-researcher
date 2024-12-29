@@ -128,18 +128,18 @@ class CoingeckoReport(BaseModel):
     preview_listing: bool
     public_notice: Optional[str]
     additional_notices: List[str]
-    description: Description
-    links: Links
-    image: Image
-    country_origin: str
+    description: Optional[Description]
+    links: Optional[Links]
+    image: Optional[Image]
+    country_origin: Optional[str]
     genesis_date: Optional[str]
-    contract_address: str
-    sentiment_votes_up_percentage: float
-    sentiment_votes_down_percentage: float
-    watchlist_portfolio_users: int
+    contract_address: Optional[str]
+    sentiment_votes_up_percentage: Optional[float]
+    sentiment_votes_down_percentage: Optional[float]
+    watchlist_portfolio_users: Optional[int]
     market_cap_rank: Optional[int]
-    community_data: CommunityData
-    developer_data: DeveloperData
+    community_data: Optional[CommunityData]
+    developer_data: Optional[DeveloperData]
     status_updates: List[dict]
     last_updated: str
 
