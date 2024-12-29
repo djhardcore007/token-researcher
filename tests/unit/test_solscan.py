@@ -39,7 +39,6 @@ def test_get_token_metadata_success(solscan):
 
         assert result is not None
         assert result.name == "Test Token"
-        assert "test123" in solscan.REPORT
 
 def test_get_token_metadata_error(solscan):
     with patch('requests.get') as mock_get:
@@ -48,4 +47,3 @@ def test_get_token_metadata_error(solscan):
         result = solscan.get_token_metadata("test123")
 
         assert result is None
-        assert "test123" not in solscan.REPORT

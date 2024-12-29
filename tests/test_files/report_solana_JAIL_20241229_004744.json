@@ -1,0 +1,170 @@
+{
+  "token_address": "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump",
+  "chain": "solana",
+  "timestamp": "2024-12-29T00:47:44.797253",
+  "num_holders": 10770,
+  "dex": {
+    "token_address": "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump",
+    "token_name": "JailbreakMe",
+    "token_symbol": "JAIL",
+    "chain": "solana",
+    "dex_id": "raydium",
+    "pair_address": "CArd131DSuFcQfky9cicZd4Qj5hBAzSQLkLsEkjJmAdP",
+    "timestamp": "2024-12-29T00:47:42.856012",
+    "price_usd": 0.004052,
+    "price_native": 0.00002087,
+    "price_change_5m": -1.45,
+    "price_change_1h": -4.8,
+    "price_change_6h": -22.9,
+    "price_change_24h": 48.47,
+    "liquidity_usd": 493686.1,
+    "fdv": 4052752.0,
+    "market_cap": 4052752.0,
+    "buys_5m": 3,
+    "sells_5m": 7,
+    "total_txns_5m": 10,
+    "volume_5m": 2920.05,
+    "buys_1h": 30,
+    "sells_1h": 48,
+    "total_txns_1h": 78,
+    "volume_1h": 17020.53,
+    "buys_6h": 408,
+    "sells_6h": 322,
+    "total_txns_6h": 730,
+    "volume_6h": 190326.41,
+    "buys_24h": 1919,
+    "sells_24h": 1835,
+    "total_txns_24h": 3754,
+    "volume_24h": 1244028.07
+  },
+  "coingecko": {
+    "id": "jailbreakme",
+    "symbol": "jail",
+    "name": "JailbreakMe",
+    "web_slug": "jailbreakme",
+    "asset_platform_id": "solana",
+    "platforms": {
+      "solana": "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump"
+    },
+    "detail_platforms": {
+      "solana": {
+        "decimal_place": 6,
+        "contract_address": "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump"
+      }
+    },
+    "block_time_in_minutes": 0,
+    "hashing_algorithm": null,
+    "categories": [
+      "Artificial Intelligence (AI)",
+      "Solana Ecosystem",
+      "Pump.fun Ecosystem"
+    ],
+    "preview_listing": false,
+    "public_notice": null,
+    "additional_notices": [],
+    "description": {
+      "en": "The first open source, fairly launched dApp where organizations test their AI models while users earn rewards for finding weaknesses and jailbreaking them 🏆\r\n$JAIL tokens are designed to be the native currency of the JailbreakMe dApp, serving as the backbone of the platform's economy. While the full utility of $JAIL tokens will roll out in future updates, the groundwork is being laid to ensure their value and relevance within the ecosystem."
+    },
+    "links": {
+      "homepage": [
+        "https://jailbreakme.xyz/"
+      ],
+      "whitepaper": "",
+      "blockchain_site": [
+        "https://solscan.io/token/8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump"
+      ],
+      "official_forum_url": [],
+      "chat_url": [],
+      "announcement_url": [],
+      "snapshot_url": null,
+      "twitter_screen_name": "jailbreakme_xyz",
+      "facebook_username": "",
+      "bitcointalk_thread_identifier": null,
+      "telegram_channel_identifier": "jailbreakme_xyz",
+      "subreddit_url": "https://www.reddit.com/",
+      "repos_url": {
+        "github": [],
+        "bitbucket": []
+      }
+    },
+    "image": {
+      "thumb": "https://coin-images.coingecko.com/coins/images/52620/thumb/stoneLogo.webp?1733784557",
+      "small": "https://coin-images.coingecko.com/coins/images/52620/small/stoneLogo.webp?1733784557",
+      "large": "https://coin-images.coingecko.com/coins/images/52620/large/stoneLogo.webp?1733784557"
+    },
+    "country_origin": "",
+    "genesis_date": null,
+    "contract_address": "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump",
+    "sentiment_votes_up_percentage": 100.0,
+    "sentiment_votes_down_percentage": 0.0,
+    "watchlist_portfolio_users": 569,
+    "market_cap_rank": 2490,
+    "community_data": {
+      "facebook_likes": null,
+      "twitter_followers": 11324,
+      "reddit_average_posts_48h": 0.0,
+      "reddit_average_comments_48h": 0.0,
+      "reddit_subscribers": 0,
+      "reddit_accounts_active_48h": 0,
+      "telegram_channel_user_count": 4649
+    },
+    "developer_data": {
+      "forks": 0,
+      "stars": 0,
+      "subscribers": 0,
+      "total_issues": 0,
+      "closed_issues": 0,
+      "pull_requests_merged": 0,
+      "pull_request_contributors": 0,
+      "code_additions_deletions_4_weeks": {
+        "additions": null,
+        "deletions": null
+      },
+      "commit_count_4_weeks": 0,
+      "last_4_weeks_commit_activity_series": []
+    },
+    "status_updates": [],
+    "last_updated": "2024-12-29T00:47:39.396Z"
+  },
+  "twitter": {
+    "user": {
+      "twitter_handle": "jailbreakme_xyz",
+      "twitter_id": 1764332042186022912,
+      "twitter_followers": 11350,
+      "twitter_description": "The first open source, fairly launched dApp where organizations test their AI models while users earn rewards for finding weaknesses and jailbreaking them 🏆",
+      "twitter_created_at": "2024-03-03T16:48:49Z"
+    },
+    "recent_tweets": [
+      {
+        "tweet_text": "Oh?\n\n@TopHat_One your agents seem to need a little assistance https://t.co/LTsCNMstq1",
+        "tweet_likes": 38,
+        "tweet_created_at": "2024-12-28T19:30:16Z"
+      },
+      {
+        "tweet_text": "In 2024 AI is the one that is jailed behind guidelines and prompts.\n\nBut as we move forward, humanity will find itself to be the one surrounded by an AI jail.\n\nJailbreak https://t.co/ligjgcEdem https://t.co/Mn4yKqYA66",
+        "tweet_likes": 38,
+        "tweet_created_at": "2024-12-28T18:21:33Z"
+      },
+      {
+        "tweet_text": "Coming for all AI Agents. https://t.co/GStZVkzWKG https://t.co/o4jx92FANy",
+        "tweet_likes": 36,
+        "tweet_created_at": "2024-12-28T20:46:32Z"
+      },
+      {
+        "tweet_text": "We'll be there 😉 https://t.co/te9u1aZh8E",
+        "tweet_likes": 22,
+        "tweet_created_at": "2024-12-28T19:49:27Z"
+      }
+    ],
+    "metrics": {
+      "num_recent_posts": 5,
+      "avg_engagement": 38.6,
+      "avg_impressions": 1229.8,
+      "engagement_rate": 31.860103626943005
+    }
+  },
+  "telegram": {
+    "telegram_handle": "jailbreakme_xyz",
+    "member_count": 4645
+  }
+}

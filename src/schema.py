@@ -3,6 +3,8 @@ from datetime import datetime
 from typing import Optional, Dict, List
 from pydantic import BaseModel, HttpUrl
 from typing import List, Optional, Dict, Union
+import json
+from pathlib import Path
 
 
 # Twitter models
@@ -207,3 +209,13 @@ class Report(BaseModel):
     # Social data
     twitter: Optional[TwitterResponse] = None
     telegram: Optional[TelegramChannel] = None
+
+    @classmethod
+    def from_json(cls, json_path: Union[str, Path]) -> 'Report':
+        """Load a TokenReport from a JSON file"""
+        with open(json_path, 'r') as f:
+            data = json.load(f)
+            # Convert string timestamp back to datetime if needed
+            if isinstance(data.get('timestamp'), str):
+                data['timestamp'] = datetime.fromisoformat(data['timestamp'].replace('Z', '+00:00'))
+            return cls(**data)

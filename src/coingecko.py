@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 import requests
 from src.schema import (
@@ -53,7 +54,7 @@ class CoinGecko:
             return parsed_data
 
         except Exception as e:
-            print(f"Error parsing coin data: {e}")
+            logging.info(f"Error parsing coin data: {e}")
             return None
 
     def get_coin_info(self, contract_address: str, chain: str = 'solana') -> Optional[CoingeckoReport]:
@@ -67,7 +68,7 @@ class CoinGecko:
             return self.parse_coin_data(data)
 
         except Exception as e:
-            print(f"Error fetching coin info: {e}")
+            logging.info(f"Error fetching coin info: {e}")
             return None
 
 

@@ -1,3 +1,4 @@
+import logging
 from pydantic import BaseModel
 from typing import Optional
 import requests
@@ -44,11 +45,11 @@ class Solscan:
             return token_metadata
 
         except requests.RequestException as e:
-            print(f"API request failed: {e}")
+            logging.info(f"API request failed: {e}")
             return None
         except KeyError as e:
-            print(f"Invalid response format: {e}")
+            logging.info(f"Invalid response format: {e}")
             return None
         except Exception as e:
-            print(f"Unexpected error: {e}")
+            logging.info(f"Unexpected error: {e}")
             return None
