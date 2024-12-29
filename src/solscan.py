@@ -31,7 +31,7 @@ class Solscan:
         self.api_key = Config.SOLSCAN_API_KEY
         self.base_url = "https://pro-api.solscan.io/v2.0"
         self.headers = {"token": self.api_key}
-        self.REPORT = {}
+
 
     def get_token_metadata(self, token_address: str) -> Optional[TokenMetadata]:
         try:
@@ -41,7 +41,6 @@ class Solscan:
             data = response.json()
 
             token_metadata = TokenMetadata.model_validate(data['data'])
-            self.REPORT[token_address] = token_metadata
             return token_metadata
 
         except requests.RequestException as e:

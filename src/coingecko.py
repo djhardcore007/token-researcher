@@ -14,7 +14,7 @@ from src.schema import (
 class CoinGecko:
     def __init__(self):
         self.base_url = "https://api.coingecko.com/api/v3"
-        self.REPORT = {}
+
 
     def parse_coin_data(self, data: dict) -> Optional[CoingeckoReport]:
         """Parse CoinGecko API response into CoingeckoReport"""
@@ -50,8 +50,6 @@ class CoinGecko:
                 last_updated=data['last_updated']
             )
 
-            # Store in report
-            self.REPORT[data['id']] = parsed_data
             return parsed_data
 
         except Exception as e:
