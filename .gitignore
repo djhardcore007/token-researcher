@@ -1,4 +1,5 @@
 # Environment variables
+run.sh
 .env
 .env.*
 !.env.example

@@ -7,9 +7,6 @@ from src.schema import (
     DeveloperData,
     Links,
     Image,
-    Platforms,
-    DetailPlatforms,
-    Description
 )
 
 class CoinGecko:
@@ -27,30 +24,27 @@ class CoinGecko:
                 name=data['name'],
                 web_slug=data['web_slug'],
                 asset_platform_id=data['asset_platform_id'],
-                platforms=Platforms(**data['platforms']),
-                detail_platforms=DetailPlatforms(**data['detail_platforms']),
                 block_time_in_minutes=data['block_time_in_minutes'],
                 hashing_algorithm=data['hashing_algorithm'],
                 categories=data['categories'],
                 preview_listing=data['preview_listing'],
                 public_notice=data['public_notice'],
                 additional_notices=data['additional_notices'],
-                description=Description(**data['description']) if data['description'] else None,
+                description=data['description']["en"],
                 links=Links(**data['links']) if data['links'] else None,
                 image=Image(**data['image']) if data['image'] else None,
                 country_origin=data['country_origin'],
                 genesis_date=data['genesis_date'],
                 contract_address=data['contract_address'],
-                sentiment_votes_up_percentage=data['sentiment_votes_up_percentage'],
-                sentiment_votes_down_percentage=data['sentiment_votes_down_percentage'],
-                watchlist_portfolio_users=data['watchlist_portfolio_users'],
-                market_cap_rank=data['market_cap_rank'],
-                community_data=CommunityData(**data['community_data']),
-                developer_data=DeveloperData(**data['developer_data']),
-                status_updates=data['status_updates'],
-                last_updated=data['last_updated']
+                sentiment_votes_up_percentage=data['sentiment_votes_up_percentage'] if data['sentiment_votes_up_percentage'] else 0,
+                sentiment_votes_down_percentage=data['sentiment_votes_down_percentage'] if data['sentiment_votes_down_percentage'] else 0,
+                watchlist_portfolio_users=data['watchlist_portfolio_users'] if data['watchlist_portfolio_users'] else 0,
+                market_cap_rank=data['market_cap_rank'] if data['market_cap_rank'] else None,
+                community_data=CommunityData(**data['community_data']) if data['community_data'] else None,
+                developer_data=DeveloperData(**data['developer_data']) if data['developer_data'] else None,
+                status_updates=data['status_updates'] if data['status_updates'] else None,
+                last_updated=data['last_updated'] if data['last_updated'] else None
             )
-
             return parsed_data
 
         except Exception as e:
