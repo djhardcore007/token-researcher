@@ -1,8 +1,12 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, model_validator
+from typing import Dict, List, Optional, Any, Union
 from datetime import datetime
 from typing import Optional, Dict, List
-from pydantic import BaseModel, HttpUrl
 from typing import List, Optional, Dict, Union
+import json
+from pathlib import Path
+from dataclasses import dataclass, field
+from pydantic import validator
 
 
 # Twitter models
@@ -54,93 +58,160 @@ class TelegramChannel(BaseModel):
 
 ###################### CoinGecko models ######################
 
-class DetailPlatform(BaseModel):
-    decimal_place: int
-    contract_address: str
+from typing import Dict, List, Optional, Any, Union
+from pydantic import BaseModel, Field, model_validator
+from datetime import datetime
 
-class Platforms(BaseModel):
-    solana: str
 
-class DetailPlatforms(BaseModel):
-    solana: DetailPlatform
-
-class Description(BaseModel):
-    en: str
-
-class Links(BaseModel):
-    homepage: List[HttpUrl]
-    whitepaper: Optional[str]
-    blockchain_site: List[HttpUrl]
-    official_forum_url: List[str]
-    chat_url: List[str]
-    announcement_url: List[str]
-    snapshot_url: Optional[str]
-    twitter_screen_name: Optional[str]
-    facebook_username: Optional[str]
-    bitcointalk_thread_identifier: Optional[str]
-    telegram_channel_identifier: Optional[str]
-    subreddit_url: Optional[HttpUrl]
-    repos_url: Dict[str, List[str]]
 
 class Image(BaseModel):
-    thumb: HttpUrl
-    small: HttpUrl
-    large: HttpUrl
+    thumb: Optional[str] = None
+    small: Optional[str] = None
+    large: Optional[str] = None
+
+class ReposUrl(BaseModel):
+    github: List[str] = Field(default_factory=list)
+    bitbucket: List[str] = Field(default_factory=list)
+
+class Links(BaseModel):
+    homepage: List[str] = Field(default_factory=list)
+    whitepaper: Optional[str] = None
+    blockchain_site: List[str] = Field(default_factory=list)
+    official_forum_url: List[str] = Field(default_factory=list)
+    chat_url: List[str] = Field(default_factory=list)
+    announcement_url: List[str] = Field(default_factory=list)
+    snapshot_url: Optional[str] = None
+    twitter_screen_name: Optional[str] = None
+    facebook_username: Optional[str] = None
+    bitcointalk_thread_identifier: Optional[Any] = None
+    telegram_channel_identifier: Optional[str] = None
+    subreddit_url: Optional[str] = None
+    repos_url: ReposUrl = Field(default_factory=ReposUrl)
 
 class CommunityData(BaseModel):
-    facebook_likes: Optional[int]
-    twitter_followers: Optional[int]
-    reddit_average_posts_48h: float
-    reddit_average_comments_48h: float
-    reddit_subscribers: int
-    reddit_accounts_active_48h: int
-    telegram_channel_user_count: int
+    facebook_likes: Optional[int] = None
+    twitter_followers: Optional[int] = None
+    reddit_average_posts_48h: float = 0.0
+    reddit_average_comments_48h: float = 0.0
+    reddit_subscribers: int = 0
+    reddit_accounts_active_48h: int = 0
+    telegram_channel_user_count: Optional[int] = None
 
-class CodeAdditionsDeletions(BaseModel):
-    additions: Optional[int]
-    deletions: Optional[int]
+class CodeAdditionsDeletions4Weeks(BaseModel):
+    additions: Optional[Any] = None
+    deletions: Optional[Any] = None
 
 class DeveloperData(BaseModel):
-    forks: int
-    stars: int
-    subscribers: int
-    total_issues: int
-    closed_issues: int
-    pull_requests_merged: int
-    pull_request_contributors: int
-    code_additions_deletions_4_weeks: CodeAdditionsDeletions
-    commit_count_4_weeks: int
-    last_4_weeks_commit_activity_series: List[int]
+    forks: int = 0
+    stars: int = 0
+    subscribers: int = 0
+    total_issues: int = 0
+    closed_issues: int = 0
+    pull_requests_merged: int = 0
+    pull_request_contributors: int = 0
+    code_additions_deletions_4_weeks: CodeAdditionsDeletions4Weeks = Field(default_factory=CodeAdditionsDeletions4Weeks)
+    commit_count_4_weeks: int = 0
+    last_4_weeks_commit_activity_series: List[Any] = Field(default_factory=list)
+
+class Market(BaseModel):
+    name: str
+    identifier: str
+    has_trading_incentive: bool
+
+class Ticker(BaseModel):
+    base: str
+    target: str
+    market: Market
+    last: float
+    volume: float
+    converted_last: Dict[str, float]
+    converted_volume: Dict[str, float]
+    trust_score: Optional[str] = None
+    bid_ask_spread_percentage: Optional[float] = None
+    timestamp: str
+    last_traded_at: str
+    last_fetch_at: str
+    is_anomaly: bool
+    is_stale: bool
+    trade_url: Optional[str] = None
+    token_info_url: Optional[str] = None
+    coin_id: str
+    target_coin_id: str
+
+class MarketData(BaseModel):
+    current_price: Dict[str, float] = Field(default_factory=dict)
+    total_value_locked: Optional[Any] = None
+    mcap_to_tvl_ratio: Optional[Any] = None
+    fdv_to_tvl_ratio: Optional[Any] = None
+    roi: Optional[Any] = None
+    ath: Dict[str, float] = Field(default_factory=dict)
+    ath_change_percentage: Dict[str, float] = Field(default_factory=dict)
+    ath_date: Dict[str, str] = Field(default_factory=dict)
+    atl: Dict[str, float] = Field(default_factory=dict)
+    atl_change_percentage: Dict[str, float] = Field(default_factory=dict)
+    atl_date: Dict[str, str] = Field(default_factory=dict)
+    market_cap: Dict[str, float] = Field(default_factory=dict)
+    market_cap_rank: Optional[int] = None
+    fully_diluted_valuation: Dict[str, float] = Field(default_factory=dict)
+    market_cap_fdv_ratio: Optional[float] = None
+    total_volume: Dict[str, float] = Field(default_factory=dict)
+    high_24h: Dict[str, float] = Field(default_factory=dict)
+    low_24h: Dict[str, float] = Field(default_factory=dict)
+    price_change_24h: Optional[float] = None
+    price_change_percentage_24h: Optional[float] = None
+    price_change_percentage_7d: Optional[float] = None
+    price_change_percentage_14d: Optional[float] = None
+    price_change_percentage_30d: Dict[str, float] = Field(default_factory=dict)
+    price_change_percentage_60d: Dict[str, float] = Field(default_factory=dict)
+    price_change_percentage_200d: Dict[str, float] = Field(default_factory=dict)
+    price_change_percentage_1y: Dict[str, float] = Field(default_factory=dict)
+    market_cap_change_24h: Optional[float] = None
+    market_cap_change_percentage_24h: Optional[float] = None
+    total_supply: Optional[float] = None
+    max_supply: Optional[float] = None
+    max_supply_infinite: Optional[bool] = None
+    circulating_supply: Optional[float] = None
+    last_updated: Optional[str] = None
 
 class CoingeckoReport(BaseModel):
-    id: str
-    symbol: str
-    name: str
-    web_slug: str
-    asset_platform_id: str
-    platforms: Platforms
-    detail_platforms: DetailPlatforms
-    block_time_in_minutes: int
-    hashing_algorithm: Optional[str]
-    categories: List[str]
-    preview_listing: bool
-    public_notice: Optional[str]
-    additional_notices: List[str]
-    description: Description
-    links: Links
-    image: Image
-    country_origin: str
-    genesis_date: Optional[str]
-    contract_address: str
-    sentiment_votes_up_percentage: float
-    sentiment_votes_down_percentage: float
-    watchlist_portfolio_users: int
-    market_cap_rank: Optional[int]
-    community_data: CommunityData
-    developer_data: DeveloperData
-    status_updates: List[dict]
-    last_updated: str
+    id: str = ""
+    symbol: str = ""
+    name: str = ""
+    web_slug: Optional[str] = None
+    asset_platform_id: Optional[str] = None
+    block_time_in_minutes: int = 0
+    hashing_algorithm: Optional[str] = None
+    categories: List[str] = Field(default_factory=list)
+    preview_listing: bool = False
+    public_notice: Optional[str] = None
+    additional_notices: Optional[List[str]] = None
+    localization: Optional[Dict[str, str]] = None
+    description: str = ""
+    links: Optional[Links] = None
+    image: Optional[Image] = None
+    country_origin: Optional[str] = None
+    genesis_date: Optional[str] = None
+    contract_address: Optional[str] = None
+    sentiment_votes_up_percentage: float = 0.0
+    sentiment_votes_down_percentage: float = 0.0
+    watchlist_portfolio_users: int = 0
+    market_cap_rank: Optional[int] = None
+    market_data: MarketData = Field(default_factory=MarketData)
+    community_data: CommunityData = Field(default_factory=CommunityData)
+    developer_data: DeveloperData = Field(default_factory=DeveloperData)
+    status_updates: Optional[List[Any]] = None
+    last_updated: Optional[str] = None
+    tickers: Optional[List[Ticker]] = None
 
+    class Config:
+        extra = "ignore"
+
+    @model_validator(mode='before')
+    @classmethod
+    def validate_data(cls, values):
+        if not isinstance(values, dict):
+            return values
+        return values
 
 ###################### DexScreener models ######################
 
@@ -207,3 +278,13 @@ class Report(BaseModel):
     # Social data
     twitter: Optional[TwitterResponse] = None
     telegram: Optional[TelegramChannel] = None
+
+    @classmethod
+    def from_json(cls, json_path: Union[str, Path]) -> 'Report':
+        """Load a TokenReport from a JSON file"""
+        with open(json_path, 'r') as f:
+            data = json.load(f)
+            # Convert string timestamp back to datetime if needed
+            if isinstance(data.get('timestamp'), str):
+                data['timestamp'] = datetime.fromisoformat(data['timestamp'].replace('Z', '+00:00'))
+            return cls(**data)
