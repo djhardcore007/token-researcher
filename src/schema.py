@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional, Dict, List
+from pydantic import BaseModel, HttpUrl
+from typing import List, Optional, Dict, Union
 
 
 # Twitter models
@@ -50,19 +52,99 @@ class TelegramChannel(BaseModel):
     telegram_handle: str
     member_count: int
 
-# CoinGecko models
-class CoinGeckoSocial(BaseModel):
-    twitter_handle: Optional[str] = None
-    telegram_handle: Optional[str] = None
-    github_repo: Optional[str] = None
-    website: Optional[str] = None
+###################### CoinGecko models ######################
 
-class CoinGeckoResponse(BaseModel):
-    token_id: Optional[str] = None
-    social_info: CoinGeckoSocial = CoinGeckoSocial()
+class DetailPlatform(BaseModel):
+    decimal_place: int
+    contract_address: str
 
-# DexScreener models
-class TokenInfo(BaseModel):
+class Platforms(BaseModel):
+    solana: str
+
+class DetailPlatforms(BaseModel):
+    solana: DetailPlatform
+
+class Description(BaseModel):
+    en: str
+
+class Links(BaseModel):
+    homepage: List[HttpUrl]
+    whitepaper: Optional[str]
+    blockchain_site: List[HttpUrl]
+    official_forum_url: List[str]
+    chat_url: List[str]
+    announcement_url: List[str]
+    snapshot_url: Optional[str]
+    twitter_screen_name: Optional[str]
+    facebook_username: Optional[str]
+    bitcointalk_thread_identifier: Optional[str]
+    telegram_channel_identifier: Optional[str]
+    subreddit_url: Optional[HttpUrl]
+    repos_url: Dict[str, List[str]]
+
+class Image(BaseModel):
+    thumb: HttpUrl
+    small: HttpUrl
+    large: HttpUrl
+
+class CommunityData(BaseModel):
+    facebook_likes: Optional[int]
+    twitter_followers: Optional[int]
+    reddit_average_posts_48h: float
+    reddit_average_comments_48h: float
+    reddit_subscribers: int
+    reddit_accounts_active_48h: int
+    telegram_channel_user_count: int
+
+class CodeAdditionsDeletions(BaseModel):
+    additions: Optional[int]
+    deletions: Optional[int]
+
+class DeveloperData(BaseModel):
+    forks: int
+    stars: int
+    subscribers: int
+    total_issues: int
+    closed_issues: int
+    pull_requests_merged: int
+    pull_request_contributors: int
+    code_additions_deletions_4_weeks: CodeAdditionsDeletions
+    commit_count_4_weeks: int
+    last_4_weeks_commit_activity_series: List[int]
+
+class CoingeckoReport(BaseModel):
+    id: str
+    symbol: str
+    name: str
+    web_slug: str
+    asset_platform_id: str
+    platforms: Platforms
+    detail_platforms: DetailPlatforms
+    block_time_in_minutes: int
+    hashing_algorithm: Optional[str]
+    categories: List[str]
+    preview_listing: bool
+    public_notice: Optional[str]
+    additional_notices: List[str]
+    description: Description
+    links: Links
+    image: Image
+    country_origin: str
+    genesis_date: Optional[str]
+    contract_address: str
+    sentiment_votes_up_percentage: float
+    sentiment_votes_down_percentage: float
+    watchlist_portfolio_users: int
+    market_cap_rank: Optional[int]
+    community_data: CommunityData
+    developer_data: DeveloperData
+    status_updates: List[dict]
+    last_updated: str
+
+
+###################### DexScreener models ######################
+
+class DexScreenerInfo(BaseModel):
     # Basic token info
     token_address: str
     token_name: str
@@ -114,12 +196,13 @@ class Report(BaseModel):
     token_address: str
     chain: str
     timestamp: datetime
+    num_holders: int = 0
 
     # DexScreener data
-    dex: TokenInfo
+    dex: DexScreenerInfo
 
     # CoinGecko data
-    coingecko: CoinGeckoResponse
+    coingecko: CoingeckoReport
 
     # Social data
     twitter: Optional[TwitterResponse] = None

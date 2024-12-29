@@ -2,7 +2,7 @@ import logging
 import requests
 from typing import Optional, Dict
 from datetime import datetime
-from src.schema import TokenInfo
+from src.schema import DexScreenerInfo
 
 class DexScreener:
     def __init__(self):
@@ -20,15 +20,15 @@ class DexScreener:
             self.logger.error(f"Error getting token info: {str(e)}")
             return None
 
-    def process_token_data(self, data: Dict) -> Optional[TokenInfo]:
-        """Process raw token data into TokenInfo model."""
+    def process_token_data(self, data: Dict) -> Optional[DexScreenerInfo]:
+        """Process raw token data into DexScreenerInfo model."""
         try:
             if not data or 'pairs' not in data or not data['pairs']:
                 return None
 
             pair = data['pairs'][0]  # Use first pair
 
-            return TokenInfo(
+            return DexScreenerInfo(
                 token_address=pair['baseToken']['address'],
                 token_name=pair['baseToken']['name'],
                 token_symbol=pair['baseToken']['symbol'],
@@ -72,7 +72,7 @@ class DexScreener:
             self.logger.error(f"Error processing token data: {str(e)}")
             return None
 
-    def research_tokens(self, address: str) -> Optional[TokenInfo]:
+    def research_tokens(self, address: str) -> Optional[DexScreenerInfo]:
         """Research single token and return result."""
         data = self.get_token_info(address)
         if data:

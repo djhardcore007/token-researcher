@@ -1,51 +1,82 @@
-import logging
-import requests
 from typing import Optional
-from src.schema import CoinGeckoSocial, CoinGeckoResponse
+import requests
+from src.schema import (
+    CoingeckoReport,
+    CommunityData,
+    DeveloperData,
+    Links,
+    Image,
+    Platforms,
+    DetailPlatforms,
+    Description
+)
 
 class CoinGecko:
     def __init__(self):
         self.base_url = "https://api.coingecko.com/api/v3"
-        self.logger = logging.getLogger(__name__)
+        self.REPORT = {}
 
-    def get_token_id(self, contract_address: str, chain: str) -> Optional[str]:
-        """Get CoinGecko token ID from contract address."""
+    def parse_coin_data(self, data: dict) -> Optional[CoingeckoReport]:
+        """Parse CoinGecko API response into CoingeckoReport"""
         try:
-            endpoint = f"{self.base_url}/coins/{chain}/contract/{contract_address}"
-            response = requests.get(endpoint)
-            if response.status_code == 200:
-                return response.json().get('id')
-            return None
+            # Create the CoingeckoReport instance
+            parsed_data = CoingeckoReport(
+                id=data['id'],
+                symbol=data['symbol'],
+                name=data['name'],
+                web_slug=data['web_slug'],
+                asset_platform_id=data['asset_platform_id'],
+                platforms=Platforms(**data['platforms']),
+                detail_platforms=DetailPlatforms(**data['detail_platforms']),
+                block_time_in_minutes=data['block_time_in_minutes'],
+                hashing_algorithm=data['hashing_algorithm'],
+                categories=data['categories'],
+                preview_listing=data['preview_listing'],
+                public_notice=data['public_notice'],
+                additional_notices=data['additional_notices'],
+                description=Description(**data['description']),
+                links=Links(**data['links']),
+                image=Image(**data['image']),
+                country_origin=data['country_origin'],
+                genesis_date=data['genesis_date'],
+                contract_address=data['contract_address'],
+                sentiment_votes_up_percentage=data['sentiment_votes_up_percentage'],
+                sentiment_votes_down_percentage=data['sentiment_votes_down_percentage'],
+                watchlist_portfolio_users=data['watchlist_portfolio_users'],
+                market_cap_rank=data['market_cap_rank'],
+                community_data=CommunityData(**data['community_data']),
+                developer_data=DeveloperData(**data['developer_data']),
+                status_updates=data['status_updates'],
+                last_updated=data['last_updated']
+            )
+
+            # Store in report
+            self.REPORT[data['id']] = parsed_data
+            return parsed_data
+
         except Exception as e:
-            self.logger.error(f"Error getting CoinGecko ID: {str(e)}")
+            print(f"Error parsing coin data: {e}")
             return None
 
-    def get_social_info(self, coingecko_id: str) -> CoinGeckoSocial:
-        """Get basic token social media information."""
+    def get_coin_info(self, contract_address: str, chain: str = 'solana') -> Optional[CoingeckoReport]:
+        """Get and parse coin information from CoinGecko"""
         try:
-            endpoint = f"{self.base_url}/coins/{coingecko_id}?localization=false&tickers=false&market_data=false&community_data=true&developer_data=false&sparkline=false"
-            response = requests.get(endpoint)
-            if response.status_code == 200:
-                data = response.json()
-                return CoinGeckoSocial(
-                    twitter_handle=data.get('links', {}).get('twitter_screen_name'),
-                    telegram_handle=data.get('links', {}).get('telegram_channel_identifier'),
-                    github_repo=data.get('links', {}).get('repos_url', {}).get('github', [None])[0],
-                    website=data.get('links', {}).get('homepage', [None])[0]
-                )
-            return CoinGeckoSocial()
+            url = f"{self.base_url}/coins/{chain}/contract/{contract_address}"
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+
+            return self.parse_coin_data(data)
+
         except Exception as e:
-            self.logger.error(f"Error getting social info: {str(e)}")
-            return CoinGeckoSocial()
+            print(f"Error fetching coin info: {e}")
+            return None
 
-    def get_coin_info(self, contract_address: str, chain: str) -> CoinGeckoResponse:
-        """Get complete coin information."""
-        token_id = self.get_token_id(contract_address, chain)
-        if not token_id:
-            return CoinGeckoResponse()
 
-        social_info = self.get_social_info(token_id)
-        return CoinGeckoResponse(
-            token_id=token_id,
-            social_info=social_info
-        )
+# Example usage
+if __name__ == "__main__":
+    coingecko = CoinGecko()
+
+    # Example with JAIL token
+    contract = "8cNmp9T2CMQRNZhNRoeSvr57LDf1kbZ42SvgsSWfpump"
+    parsed_data = coingecko.get_coin_info(contract)
