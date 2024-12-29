@@ -1,9 +1,13 @@
 import csv
 import logging
 from pathlib import Path
+import pandas as pd
 from typing import List, Union, Dict, Any
 from src.schema import Report
 from datetime import datetime
+
+
+FLATTENED_REPORT_COLUMNS = 123
 
 
 def save_report(report: Report, output_path: str) -> None:
@@ -57,6 +61,7 @@ def reports_to_csv(reports: List[Report], output_path: str) -> None:
     # Get all fields from first report
     first_report = reports[0].model_dump()
     flattened = flatten_dict(first_report)
+    assert len(flattened.keys()) == FLATTENED_REPORT_COLUMNS, f"Flattened report columns {len(flattened.keys())} do not match expected number of columns: 123"
     headers = list(flattened.keys())
 
     rows = []
@@ -64,10 +69,17 @@ def reports_to_csv(reports: List[Report], output_path: str) -> None:
         # Convert report to dict and flatten
         report_dict = report.model_dump()
         flat_row = flatten_dict(report_dict)
-        rows.append(flat_row)
 
-    # Write to CSV
-    with open(output_path, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
-        writer.writeheader()
-        writer.writerows(rows)
+        row = {}
+        for k in headers:
+            if k in flat_row:
+                row[k] = flat_row[k]
+            else:
+                row[k] = None
+
+        row = pd.Series(row)
+        rows.append(row)
+
+    df = pd.concat(rows, axis=1).T
+    df.columns = headers
+    df.to_csv(output_path, index=False)

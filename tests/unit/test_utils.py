@@ -1,3 +1,4 @@
+from pathlib import Path
 import pytest
 from src.utils import save_report, load_multiple_reports, load_single_report, reports_to_csv
 from src.schema import Report
@@ -28,3 +29,10 @@ def get_multiple_reports():
 def test_reports_to_csv(get_multiple_reports, tmpdir):
     reports = get_multiple_reports
     reports_to_csv(reports, str(tmpdir.join("test_reports.csv")))
+
+
+def test_get_csv():
+    json_paths = Path("output").glob("*.json")
+    reports = load_multiple_reports(json_paths)
+
+    reports_to_csv(reports, "test_reports.csv")
