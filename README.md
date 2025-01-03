@@ -1,5 +1,7 @@
-# Goal
+# Token Research Toolkit
+You can find our latest analysis reports on [Twitter](https://x.com/berkshire_ai)
 
+# Goal
 * Create a tool to analyze crypto projects and provide insights on their potential for success.
 
 ## Data Sources
