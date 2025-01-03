@@ -1,10 +1,17 @@
-# token-researcher
-research a token given token addr.
+# Goal
 
-## Development
-```bash
+* Create a tool to analyze crypto projects and provide insights on their potential for success.
+
+## Data Sources
+- [Dexscreener](https://dexscreener.com/)
+- [CoinGecko](https://www.coingecko.com/)
+- [Solscan](https://solscan.io/)
+
+## Token Metrics
+We will use the following metrics to analyze the token:
+- [Token Metrics](./token_metrics.md)
+
+## Dev
+```
 docker-compose up
-docker-compose run test
-docker-compose run test pytest
-docker-compose run dexscreener /bin/bash
 ```
