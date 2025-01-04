@@ -1,18 +1,13 @@
 version: '3.8'
 
 services:
-  dexscreener:
-    build: .
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
-    environment:
-      - PYTHONPATH=/app
-    command: python src/dexscreener.py
-
-  test:
-    build: .
-    volumes:
-      - .:/app
-    environment:
-      - PYTHONPATH=/app
-    # command: pytest tests/
+    # Override entrypoint for shell access
+    entrypoint: /bin/bash
+    tty: true
+    stdin_open: true

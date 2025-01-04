@@ -15,5 +15,12 @@ We will use the following metrics to analyze the token:
 
 ## Dev
 ```
-docker-compose up
+# Build the containers
+docker compose build
+
+# Start and access the dev container
+docker compose run --rm dev
+
+# Or access an already running container
+docker compose exec dev bash
 ```

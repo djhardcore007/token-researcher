@@ -1,0 +1,208 @@
+{
+  "token_address": "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
+  "chain": "base",
+  "timestamp": "2024-12-29T03:58:20.799237",
+  "num_holders": 0,
+  "dex": {
+    "token_address": "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
+    "token_name": "Virtual Protocol",
+    "token_symbol": "VIRTUAL",
+    "chain": "base",
+    "dex_id": "uniswap",
+    "pair_address": "0xE31c372a7Af875b3B5E0F3713B17ef51556da667",
+    "timestamp": "2024-12-29T03:58:18.629175",
+    "price_usd": 3.46,
+    "price_native": 0.001023,
+    "price_change_5m": -0.31,
+    "price_change_1h": 0.62,
+    "price_change_6h": 4.79,
+    "price_change_24h": -1.22,
+    "liquidity_usd": 3260136.72,
+    "fdv": 1677709716.0,
+    "market_cap": 1677709716.0,
+    "buys_5m": 68,
+    "sells_5m": 42,
+    "total_txns_5m": 110,
+    "volume_5m": 47136.48,
+    "buys_1h": 991,
+    "sells_1h": 762,
+    "total_txns_1h": 1753,
+    "volume_1h": 807846.97,
+    "buys_6h": 6571,
+    "sells_6h": 6135,
+    "total_txns_6h": 12706,
+    "volume_6h": 7029588.16,
+    "buys_24h": 29608,
+    "sells_24h": 25578,
+    "total_txns_24h": 55186,
+    "volume_24h": 28918115.07
+  },
+  "coingecko": {
+    "id": "virtual-protocol",
+    "symbol": "virtual",
+    "name": "Virtuals Protocol",
+    "web_slug": "virtual-protocol",
+    "asset_platform_id": "ethereum",
+    "block_time_in_minutes": 0,
+    "hashing_algorithm": null,
+    "categories": [
+      "Artificial Intelligence (AI)",
+      "Ethereum Ecosystem",
+      "Base Ecosystem",
+      "AI Agents",
+      "Virtuals Protocol Ecosystem",
+      "AI Agent Launchpad"
+    ],
+    "preview_listing": false,
+    "public_notice": null,
+    "additional_notices": [],
+    "localization": null,
+    "description": "An AI x Metaverse Protocol that is building the future of virtual interactions.",
+    "links": {
+      "homepage": [
+        "https://www.virtuals.io/"
+      ],
+      "whitepaper": "https://whitepaper.virtuals.io/",
+      "blockchain_site": [
+        "https://etherscan.io/address/0x44ff8620b8ca30902395a7bd3f2407e1a091bf73",
+        "https://platform.arkhamintelligence.com/explorer/token/virtual-protocol",
+        "https://etherscan.io/token/0x44ff8620b8ca30902395a7bd3f2407e1a091bf73",
+        "https://ethplorer.io/address/0x44ff8620b8ca30902395a7bd3f2407e1a091bf73",
+        "https://basescan.org/token/0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b"
+      ],
+      "official_forum_url": [],
+      "chat_url": [],
+      "announcement_url": [],
+      "snapshot_url": null,
+      "twitter_screen_name": "virtuals_io",
+      "facebook_username": "",
+      "bitcointalk_thread_identifier": null,
+      "telegram_channel_identifier": "virtuals",
+      "subreddit_url": "https://www.reddit.com",
+      "repos_url": {
+        "github": [],
+        "bitbucket": []
+      }
+    },
+    "image": {
+      "thumb": "https://coin-images.coingecko.com/coins/images/34057/thumb/LOGOMARK.png?1708356054",
+      "small": "https://coin-images.coingecko.com/coins/images/34057/small/LOGOMARK.png?1708356054",
+      "large": "https://coin-images.coingecko.com/coins/images/34057/large/LOGOMARK.png?1708356054"
+    },
+    "country_origin": "",
+    "genesis_date": null,
+    "contract_address": "0x44ff8620b8ca30902395a7bd3f2407e1a091bf73",
+    "sentiment_votes_up_percentage": 84.35,
+    "sentiment_votes_down_percentage": 15.65,
+    "watchlist_portfolio_users": 40135,
+    "market_cap_rank": 48,
+    "market_data": {
+      "current_price": {},
+      "total_value_locked": null,
+      "mcap_to_tvl_ratio": null,
+      "fdv_to_tvl_ratio": null,
+      "roi": null,
+      "ath": {},
+      "ath_change_percentage": {},
+      "ath_date": {},
+      "atl": {},
+      "atl_change_percentage": {},
+      "atl_date": {},
+      "market_cap": {},
+      "market_cap_rank": null,
+      "fully_diluted_valuation": {},
+      "market_cap_fdv_ratio": null,
+      "total_volume": {},
+      "high_24h": {},
+      "low_24h": {},
+      "price_change_24h": null,
+      "price_change_percentage_24h": null,
+      "price_change_percentage_7d": null,
+      "price_change_percentage_14d": null,
+      "price_change_percentage_30d": {},
+      "price_change_percentage_60d": {},
+      "price_change_percentage_200d": {},
+      "price_change_percentage_1y": {},
+      "market_cap_change_24h": null,
+      "market_cap_change_percentage_24h": null,
+      "total_supply": null,
+      "max_supply": null,
+      "max_supply_infinite": null,
+      "circulating_supply": null,
+      "last_updated": null
+    },
+    "community_data": {
+      "facebook_likes": null,
+      "twitter_followers": 130215,
+      "reddit_average_posts_48h": 0.0,
+      "reddit_average_comments_48h": 0.0,
+      "reddit_subscribers": 0,
+      "reddit_accounts_active_48h": 0,
+      "telegram_channel_user_count": 19443
+    },
+    "developer_data": {
+      "forks": 0,
+      "stars": 0,
+      "subscribers": 0,
+      "total_issues": 0,
+      "closed_issues": 0,
+      "pull_requests_merged": 0,
+      "pull_request_contributors": 0,
+      "code_additions_deletions_4_weeks": {
+        "additions": null,
+        "deletions": null
+      },
+      "commit_count_4_weeks": 0,
+      "last_4_weeks_commit_activity_series": []
+    },
+    "status_updates": null,
+    "last_updated": "2024-12-29T03:58:16.388Z",
+    "tickers": null
+  },
+  "twitter": {
+    "user": {
+      "twitter_handle": "virtuals_io",
+      "twitter_id": 1438365197505232902,
+      "twitter_followers": 132020,
+      "twitter_description": "Society of AI Agents @base. Imagine millions of @luna_virtuals. Join the community: https://t.co/SGMqIfZs5W | https://t.co/IXYOA24W1E",
+      "twitter_created_at": "2021-09-16T04:53:09Z"
+    },
+    "recent_tweets": [
+      {
+        "tweet_text": "It's been just over a month since @GAME_Virtuals was made available for @virtuals_io agent builders to use. We've seen:\n\n- 200+ projects building using GAME with a collective market cap of &gt;500mn\n- 150k requests sent daily on GAME\n- 200% week-on-week growth\n\nGAME is getting… https://t.co/EEM8hxPR4R https://t.co/CokwQQmuYb",
+        "tweet_likes": 1107,
+        "tweet_created_at": "2024-12-26T09:40:47Z"
+      },
+      {
+        "tweet_text": "Welcome to the Virtuals family 🫡 https://t.co/yC8gWfRLpc",
+        "tweet_likes": 686,
+        "tweet_created_at": "2024-12-27T18:12:45Z"
+      },
+      {
+        "tweet_text": "Multi-agent systems live on Virtuals spreading joy, powered by @GAME_Virtuals and @questflow \n\nMerry Christmas 🎅 https://t.co/gMgS2s6K0G https://t.co/zNVXjWjQEu",
+        "tweet_likes": 663,
+        "tweet_created_at": "2024-12-25T08:21:57Z"
+      },
+      {
+        "tweet_text": "GAME is for everyone https://t.co/Nzj0J3BZf7",
+        "tweet_likes": 545,
+        "tweet_created_at": "2024-12-27T09:39:45Z"
+      },
+      {
+        "tweet_text": "Join our @GAME_Virtuals gigachad contributors and fellow agent builders this Thursday in Discord! \n\nLearn why you should build with GAME. https://t.co/y7l4Kmzok6",
+        "tweet_likes": 364,
+        "tweet_created_at": "2024-12-24T14:32:17Z"
+      }
+    ],
+    "metrics": {
+      "num_recent_posts": 5,
+      "avg_engagement": 590.2,
+      "avg_impressions": 53571.8,
+      "engagement_rate": 90.7688919010505
+    }
+  },
+  "telegram": {
+    "telegram_handle": "virtuals",
+    "member_count": 19453
+  }
+}
