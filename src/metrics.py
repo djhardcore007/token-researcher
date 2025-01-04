@@ -61,7 +61,11 @@ def calculate_liquidity_metrics(report: Report) -> LiquidityMetrics:
 def calculate_social_metrics(report: Report) -> SocialMetrics:
     """Calculate social media related metrics"""
     if not report.twitter:
-        return SocialMetrics(0, 0, 0)
+        return SocialMetrics(
+            social_dominance=0,
+            engagement_rate=0,
+            sentiment_score=0
+        )
 
     followers = report.twitter.user.twitter_followers
     total_engagement = sum(tweet.tweet_likes for tweet in report.twitter.recent_tweets)
@@ -95,7 +99,11 @@ def calculate_wallet_metrics(report: Report, holders: List[Dict[str, float]]) ->
     total_supply = report.coingecko.market_data.total_supply or 0
 
     if not holders or total_supply == 0:
-        return WalletMetrics(0, 0, 0)
+        return WalletMetrics(
+            gini_coefficient=0,
+            top_10_concentration=0,
+            top_20_concentration=0
+        )
 
     # Sort holders by balance
     sorted_holders = sorted(holders, key=lambda x: x['balance'], reverse=True)

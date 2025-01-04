@@ -2,6 +2,9 @@ import click
 import logging
 from pathlib import Path
 from src.reporter import Reporter
+from src.metrics import analyze_token
+from src.utils import save_token_analysis
+
 
 def setup_logger(debug: bool = False) -> logging.Logger:
     """Setup basic logger."""
@@ -41,6 +44,13 @@ def main(token_address: str, chain: str, output_dir: str, debug: bool):
 
     logger.info(f"Report saved: {filepath}")
     logger.info(f"Token: {report.dex.token_symbol} Price: ${report.dex.price_usd:.4f}")
+
+    # Save analysis
+    analysis = analyze_token(report)
+    analysis_path = output_path / f"analysis_{chain}_{report.dex.token_symbol}_{report.timestamp.strftime('%Y%m%d_%H%M%S')}.json"
+    save_token_analysis(analysis, analysis_path)
+
+    logger.info(f"Analysis saved: {analysis_path}")
 
 if __name__ == '__main__':
     main()

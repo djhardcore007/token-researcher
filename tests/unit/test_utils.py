@@ -5,7 +5,7 @@ from src.schema import Report
 
 
 TEST_FILES_DIR = 'tests/test_files'
-TEST_FILE_PATH = f'{TEST_FILES_DIR}/report_solana_JAIL_20241229_004744.json'
+TEST_FILE_PATH = f'{TEST_FILES_DIR}/sample_report.json'
 
 
 def test_save_report(tmpdir):
@@ -19,7 +19,7 @@ def test_load_single_report():
 
 @pytest.fixture
 def get_multiple_reports():
-    json_paths = [f'{TEST_FILES_DIR}/report_solana_JAIL_20241229_004744.json']
+    json_paths = [f'{TEST_FILES_DIR}/sample_report.json']
     reports = load_multiple_reports(json_paths)
     assert len(reports) > 0
     assert isinstance(reports[0], Report)

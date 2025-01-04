@@ -39,3 +39,6 @@ def test_integration_main_invalid(runner, temp_output_dir):
     # No report file should be created
     report_files = list(temp_output_dir.glob("report_*.json"))
     assert len(report_files) == 0
+
+    analysis_files = list(temp_output_dir.glob("analysis_*.json"))
+    assert len(analysis_files) == 0

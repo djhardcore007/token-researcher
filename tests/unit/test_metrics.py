@@ -11,7 +11,7 @@ from src.metrics import (
 )
 from src.metrics_schema import TokenAnalysis
 from src.schema import Report
-
+from src.utils import save_token_analysis
 
 TEST_FILES_DIR = Path("tests/test_files")
 
@@ -88,3 +88,14 @@ def test_analyze_token(sample_report):
     """Test analyze_token function"""
     analysis = analyze_token(sample_report)
     assert isinstance(analysis, TokenAnalysis)
+
+
+def test_save_token_analysis(sample_report, tmpdir):
+    """Test save_token_analysis function"""
+    analysis = analyze_token(sample_report)
+    save_token_analysis(analysis, tmpdir / "sample_analysis.json")
+
+    with open(tmpdir / "sample_analysis.json", "r") as f:
+        loaded_analysis = TokenAnalysis.from_json(f.read())
+
+    assert analysis == loaded_analysis

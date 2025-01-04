@@ -1,11 +1,11 @@
 import csv
+from datetime import datetime
 import logging
 from pathlib import Path
 import pandas as pd
 from typing import List, Union, Dict, Any
 from src.schema import Report
-from datetime import datetime
-
+from src.metrics_schema import TokenAnalysis
 
 FLATTENED_REPORT_COLUMNS = 123
 
@@ -83,3 +83,9 @@ def reports_to_csv(reports: List[Report], output_path: str) -> None:
     df = pd.concat(rows, axis=1).T
     df.columns = headers
     df.to_csv(output_path, index=False)
+
+
+def save_token_analysis(analysis: TokenAnalysis, output_path: str) -> None:
+    """Save a TokenAnalysis object to a JSON file"""
+    with open(output_path, 'w') as f:
+        f.write(analysis.model_dump_json(indent=2))
